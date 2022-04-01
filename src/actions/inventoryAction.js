@@ -2,7 +2,7 @@ import inventoryServices from "../services/streaming/inventoryService";
 
 export const SET_PRODUCTS = "products/SET_PRODUCTS";
 
-export const setProducts = () => async (dispatch) => {
+export const set_products = () => async (dispatch) => {
   try {
     await inventoryServices.getProducts().then(function (response) {
       dispatch({
