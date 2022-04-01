@@ -1,6 +1,7 @@
 import {
   ADD_PRODUCT,
   REMOVE_PRODUCT,
+  SET_BUYER,
   UPDATE_PRODUCT,
 } from "../actions/sellAction";
 
@@ -8,6 +9,7 @@ const INITIAL_STATE = {
   shopingCart: localStorage.getItem("shopingCart")
     ? JSON.parse(localStorage.getItem("shopingCart"))
     : [],
+  buyer: {},
 };
 
 const inventory = (state = INITIAL_STATE, action) => {
@@ -34,7 +36,6 @@ const inventory = (state = INITIAL_STATE, action) => {
         shopingCart: cart,
       };
     }
-
     case UPDATE_PRODUCT: {
       let cart = state.shopingCart.map((cart) =>
         cart.product.id === action.payload.id
@@ -45,6 +46,12 @@ const inventory = (state = INITIAL_STATE, action) => {
       return {
         ...state,
         shopingCart: cart,
+      };
+    }
+    case SET_BUYER: {
+      return {
+        ...state,
+        buyer: action.payload,
       };
     }
     default:

@@ -1,6 +1,7 @@
 export const ADD_PRODUCT = "sell/ADD_PRODUCT";
 export const REMOVE_PRODUCT = "sell/REMOVE_PRODUCT";
 export const UPDATE_PRODUCT = "sell/UPDATE_PRODUCT";
+export const SET_BUYER = "sell/SET_BUYER";
 
 export const add_product = (product, quantity) => async (dispatch) => {
   dispatch({
@@ -20,5 +21,12 @@ export const update_product = (id, quantity) => async (dispatch) => {
   dispatch({
     type: UPDATE_PRODUCT,
     payload: { id: id, quantity: quantity },
+  });
+};
+
+export const set_buyer = (buyer) => async (dispatch) => {
+  dispatch({
+    type: SET_BUYER,
+    payload: buyer,
   });
 };

@@ -4,12 +4,11 @@ import { set_products } from "../actions/inventoryAction";
 import Table from "../compontents/Table";
 
 const Iventory = (props) => {
-
   useEffect(() => {
     //TODO implementar lógica de carga
     if (!props.state.products?.length) props.set_products();
   }, [props]);
-  
+
   return (
     <>
       <Table
