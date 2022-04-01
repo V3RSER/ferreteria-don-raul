@@ -1,11 +1,12 @@
-import React from "react";
-import ReactDOM from "react-dom";
+import React, { StrictMode } from "react";
+import { render } from "react-dom";
 import App from "./App";
-import "./assets/styles/index.sass";
+import "bootstrap/dist/css/bootstrap.min.css";
+// import "./assets/styles/index.sass";
 
-ReactDOM.render(
-  <React.StrictMode>
+render(
+  <StrictMode>
     <App />
-  </React.StrictMode>,
+  </StrictMode>,
   document.getElementById("root")
 );

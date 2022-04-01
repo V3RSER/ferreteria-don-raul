@@ -2,7 +2,7 @@
   "name": "ferreteria-don-raul",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://v3rser.github.io/erreteria-don-raul",
+  "homepage": "https://v3rser.github.io/ferreteria-don-raul",
   "dependencies": {
     "@testing-library/jest-dom": "^5.16.3",
     "@testing-library/react": "^12.1.4",
