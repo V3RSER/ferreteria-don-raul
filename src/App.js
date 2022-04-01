@@ -4,6 +4,7 @@ import store from "./store/store";
 import Inventory from "./containers/Inventory";
 import Sell from "./containers/Sell";
 import TableInventory from "./compontents/TableInventory";
+import Invoice from "./containers/Invoice";
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
               element={<TableInventory />}
             />
             <Route path="/ferreteria-don-raul/vender" element={<Sell />} />
+            <Route path="/ferreteria-don-raul/factura" element={<Invoice />} />
           </Routes>
         </div>
       </BrowserRouter>

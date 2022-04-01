@@ -2,10 +2,12 @@ import React, { useEffect, useState } from "react";
 import { connect } from "react-redux";
 import { set_products } from "../actions/inventoryAction";
 import ProductList from "./ProductList";
-import { Navbar, Collapse, NavbarText, Input, Button } from "reactstrap";
+import { Navbar, Input, Button } from "reactstrap";
+import { NavLink, useNavigate } from "react-router-dom";
 
 const Sell = (props) => {
   const [search, setSearch] = useState("");
+  let navigate = useNavigate();
 
   useEffect(() => {
     //TODO implementar lógica de carga
@@ -15,8 +17,9 @@ const Sell = (props) => {
   return (
     <>
       <Navbar color="dark" dark expand="sm" fixed="" light>
-        <NavbarText>Productos</NavbarText>
-        <Collapse navbar></Collapse>
+        <NavLink className="navbar-brand" to="/ferreteria-don-raul/vender">
+          Productos
+        </NavLink>
         <Input
           className="mx-3"
           type="text"
@@ -26,7 +29,14 @@ const Sell = (props) => {
             setSearch(event.target.value);
           }}
         />
-        <Button color="primary">Generar</Button>
+        <Button
+          color="primary"
+          onClick={() => {
+            navigate("/ferreteria-don-raul/factura");
+          }}
+        >
+          Factura
+        </Button>
       </Navbar>
       <ProductList
         products={
