@@ -1,9 +1,12 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { connect } from "react-redux";
 import { set_products } from "../actions/inventoryAction";
+import NavBarSearch from "../components/NavBarSearch";
 import Table from "../components/Table";
 
 const Iventory = (props) => {
+  const [search, setSearch] = useState("");
+
   useEffect(() => {
     //TODO implementar lógica de carga
     if (!props.state.products?.length) props.set_products();
@@ -11,6 +14,8 @@ const Iventory = (props) => {
 
   return (
     <>
+      <NavBarSearch setSearch={setSearch} />
+
       <Table
         columns={[
           {
@@ -30,36 +35,40 @@ const Iventory = (props) => {
               { Header: "Máximo", accessor: "maximo" },
             ],
           },
-          {
-            Header: "Actions",
-            accessor: "actions",
-            Cell: (props) => {
-              const rowIdx = props.row.id;
-              return (
-                <div>
-                  {/* <span onClick={() => editProduct(rowIdx)}>
-                    <i className="far fa-edit action mr-2"></i>
-                  </span>
-
-                  <span onClick={() => deleteProduct(rowIdx)}>
-                    <i className="fas fa-trash action"></i>
-                  </span> */}
-                </div>
-              );
-            },
-          },
         ]}
-        data={props.state.products?.map((product) => {
-          return {
-            nombre: product.nombre,
-            descripcion: product.descripcion,
-            precio: product.precio,
-            actual: product.existencias.actual,
-            minimo: product.existencias.minimo,
-            maximo: product.existencias.maximo,
-            nombreProveedor: product.nombreProveedor,
-          };
-        })}
+        data={
+          search.length
+            ? props.state.products
+                .filter((product) =>
+                  search.length === 1
+                    ? product.nombre.toLowerCase().charAt(0) === search
+                    : product.nombre
+                        .toLowerCase()
+                        .includes(search.toLowerCase())
+                )
+                .map((product) => {
+                  return {
+                    nombre: product.nombre,
+                    descripcion: product.descripcion,
+                    precio: product.precio,
+                    actual: product.existencias.actual,
+                    minimo: product.existencias.minimo,
+                    maximo: product.existencias.maximo,
+                    nombreProveedor: product.nombreProveedor,
+                  };
+                })
+            : props.state.products?.map((product) => {
+                return {
+                  nombre: product.nombre,
+                  descripcion: product.descripcion,
+                  precio: product.precio,
+                  actual: product.existencias.actual,
+                  minimo: product.existencias.minimo,
+                  maximo: product.existencias.maximo,
+                  nombreProveedor: product.nombreProveedor,
+                };
+              })
+        }
       />
     </>
   );

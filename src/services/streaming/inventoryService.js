@@ -8,8 +8,16 @@ const inventoryServices = () => {
     });
   };
 
+  const reduceStock = (id, quantity) => {
+    return axios({
+      method: "PUT",
+      url: "/producto/" + id + "/reduce/" + quantity,
+    });
+  };
+
   return {
     getProducts,
+    reduceStock,
   };
 };
 

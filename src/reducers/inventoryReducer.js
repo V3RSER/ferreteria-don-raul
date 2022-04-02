@@ -1,4 +1,4 @@
-import { SET_PRODUCTS } from "../actions/inventoryAction";
+import { REDUCE_STOCK, SET_PRODUCTS } from "../actions/inventoryAction";
 
 const INITIAL_STATE = {
   products: [],
@@ -12,6 +12,14 @@ const inventory = (state = INITIAL_STATE, action) => {
         products: action.payload,
       };
     }
+
+    case REDUCE_STOCK: {
+      return {
+        ...state,
+        products: [],
+      };
+    }
+
     default:
       return state;
   }

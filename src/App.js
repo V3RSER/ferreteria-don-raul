@@ -6,6 +6,7 @@ import Header from "./components/Header";
 import ShoppingCart from "./containers/ShopingCart";
 import Buyer from "./containers/Buyer";
 import History from "./containers/History";
+import Inventory from "./containers/Inventory";
 
 function App() {
   return (
@@ -20,6 +21,7 @@ function App() {
           />
           <Route path="/ferreteria-don-raul/comprador" element={<Buyer />} />
           <Route path="/ferreteria-don-raul/historial" element={<History />} />
+          <Route path="/ferreteria-don-raul/inventario" element={<Inventory />} />
         </Routes>
       </BrowserRouter>
     </Provider>

@@ -56,7 +56,7 @@ const inventory = (state = INITIAL_STATE, action) => {
       };
     }
     case CLEAR_PRODUCT: {
-      localStorage.setItem("shopingCart", {});
+      localStorage.removeItem("shopingCart");
       return {
         ...state,
         shopingCart: [],

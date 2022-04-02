@@ -9,6 +9,9 @@ const Header = () => {
         <NavLink className="navbar-brand" to="/ferreteria-don-raul">
           Vender
         </NavLink>
+        <NavLink className="navbar-brand" to="/ferreteria-don-raul/inventario">
+          Inventario
+        </NavLink>
         <NavLink className="navbar-brand" to="/ferreteria-don-raul/historial">
           Historial
         </NavLink>
