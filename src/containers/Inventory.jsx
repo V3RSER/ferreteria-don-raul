@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { connect } from "react-redux";
 import { set_products } from "../actions/inventoryAction";
-import Table from "../compontents/Table";
+import Table from "../components/Table";
 
 const Iventory = (props) => {
   useEffect(() => {

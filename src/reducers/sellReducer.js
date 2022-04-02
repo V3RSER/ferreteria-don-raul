@@ -1,5 +1,6 @@
 import {
   ADD_PRODUCT,
+  CLEAR_PRODUCT,
   REMOVE_PRODUCT,
   SET_BUYER,
   UPDATE_PRODUCT,
@@ -54,6 +55,14 @@ const inventory = (state = INITIAL_STATE, action) => {
         buyer: action.payload,
       };
     }
+    case CLEAR_PRODUCT: {
+      localStorage.setItem("shopingCart", {});
+      return {
+        ...state,
+        shopingCart: [],
+      };
+    }
+
     default:
       return state;
   }

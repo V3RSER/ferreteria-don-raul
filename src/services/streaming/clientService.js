@@ -18,6 +18,7 @@ const clientServices = () => {
 
   return {
     getClients,
+    addClient,
   };
 };
 

@@ -2,12 +2,24 @@ import React, { useEffect, useState } from "react";
 import { connect } from "react-redux";
 import { set_clients } from "../actions/clientAction";
 import { set_buyer } from "../actions/sellAction";
-import QuantityInput from "../compontents/QuantityInput";
-import Table from "../compontents/Table";
-import { Navbar, Input, Button, Collapse, ButtonGroup, Form } from "reactstrap";
-import { NavLink, useNavigate } from "react-router-dom";
+import QuantityInput from "../components/QuantityInput";
+import Table from "../components/Table";
+import {
+  Navbar,
+  Input,
+  Button,
+  Collapse,
+  ButtonGroup,
+  NavbarBrand,
+} from "reactstrap";
+import { useNavigate } from "react-router-dom";
+import UserCreate from "../components/UserCreate";
+import { generate_invoice } from "../actions/invoiceAction";
+import { clear_products } from "../actions/sellAction";
+import { NavLink } from "react-router-dom";
 
-const Sell = (props) => {
+
+const Invoice = (props) => {
   const [searchProduct, setSearchProduct] = useState("");
   const [searchUser, setSearchUser] = useState("");
   const [showUsers, setShowUsers] = useState(false);
@@ -19,14 +31,42 @@ const Sell = (props) => {
     if (!props.data.clients?.length) props.set_clients();
   }, [props]);
 
+  const createInvoice = () => {
+    if (props.data.shopingCart.length) {
+      props.generate_invoice({
+        carrito: props.data.shopingCart.flatMap(function (cart) {
+          cart.cantidad = cart.quantity;
+          return cart;
+        }),
+        vendedor: "vendedor",
+        cliente: props.data.buyer.nombre,
+      });
+      props.generate_invoice();
+      navigate("/ferreteria-don-raul/factura/" + props.data.invoice.id);
+    }
+  };
   return (
     <>
+          <Navbar color="dark" dark expand="sm" fixed="" light>
+        <NavLink className="navbar-brand" to="/ferreteria-don-raul/vender">
+          Productos
+        </NavLink>
+                <Button
+          color="success"
+          onClick={() => createInvoice()}
+        >
+          Generar factura
+        </Button>
+      </Navbar>
       <ButtonGroup>
         <Button
-          color="primary"
-          onClick={() => setShowUsers(!showUsers)}
+          color="info"
+          onClick={() => {
+            setShowUsers(!showUsers);
+          }}
           style={{
             marginBottom: "1rem",
+            marginTop: "1rem",
           }}
         >
           {showUsers ? "Ocultar " : "Mostrar "} usuarios
@@ -36,28 +76,16 @@ const Sell = (props) => {
           onClick={() => setShowCart(!showCart)}
           style={{
             marginBottom: "1rem",
+            marginTop: "1rem",
           }}
         >
           {showCart ? "Ocultar " : "Mostrar "} carrito
         </Button>
-        <Button
-          color="success"
-          onClick={() => {
-            navigate("/ferreteria-don-raul/factura");
-          }}
-          style={{
-            marginBottom: "1rem",
-          }}
-        >
-          Generar factura
-        </Button>
       </ButtonGroup>
-
       <Collapse className={showUsers ? "show" : ""}>
-        <Navbar color="primary" expand="sm" fixed="" light>
-          <NavLink className="navbar-brand" to="/ferreteria-don-raul/vender">
-            Usuarios
-          </NavLink>
+        <UserCreate />
+        <Navbar color="info" expand="sm" fixed="" light>
+          <NavbarBrand>Usuarios</NavbarBrand>
           <Input
             className="mx-3"
             type="text"
@@ -90,7 +118,16 @@ const Sell = (props) => {
                   )
                   .map((client) => {
                     return {
-                      seleccionar: <Input type="radio" name="user" />,
+                      seleccionar: (
+                        <Input
+                          type="radio"
+                          name="user"
+                          onChange={() => {
+                            props.set_buyer(client);
+                          }}
+                          value={props.data.buyer?.id === client.id}
+                        />
+                      ),
                       nombre: client.nombre,
                       documentoIdentidad: client.documentoIdentidad,
                       celular: client.celular,
@@ -102,7 +139,10 @@ const Sell = (props) => {
                       <Input
                         type="radio"
                         name="user"
-                        onChange={() => props.set_buyer(client)}
+                        onChange={() => {
+                          props.set_buyer(client);
+                        }}
+                        value={props.data.buyer?.id === client.id}
                       />
                     ),
                     nombre: client.nombre,
@@ -116,9 +156,7 @@ const Sell = (props) => {
 
       <Collapse className={showCart ? "show" : ""}>
         <Navbar color="warning" expand="sm" fixed="" light>
-          <NavLink className="navbar-brand" to="/ferreteria-don-raul/vender">
-            Carrito
-          </NavLink>
+          <NavbarBrand>Productos</NavbarBrand>
           <Input
             className="mx-3"
             type="text"
@@ -190,6 +228,8 @@ const stateMapToProps = (state) => {
     data: {
       clients: state.client.clients,
       shopingCart: state.sell.shopingCart,
+      buyer: state.sell.buyer,
+      invoice: state.invoice.invoice,
     },
   };
 };
@@ -197,6 +237,8 @@ const stateMapToProps = (state) => {
 const mapDispatchToProps = {
   set_clients,
   set_buyer,
+  generate_invoice,
+  clear_products,
 };
 
-export default connect(stateMapToProps, mapDispatchToProps)(Sell);
+export default connect(stateMapToProps, mapDispatchToProps)(Invoice);

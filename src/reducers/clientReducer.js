@@ -14,7 +14,8 @@ const invoice = (state = INITIAL_STATE, action) => {
       };
     }
     case ADD_CLIENT: {
-      let newClients = state.clients.push(action.payload);
+      let newClients = state.clients;
+      newClients.push(action.payload);
       return {
         ...state,
         clients: newClients,

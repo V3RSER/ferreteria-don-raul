@@ -1,6 +1,6 @@
 import React from "react";
 import { CardGroup } from "reactstrap";
-import ProductCard from "../compontents/ProductCard";
+import ProductCard from "../components/ProductCard";
 const ProductList = (products) => {
   return (
     <CardGroup>

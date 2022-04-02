@@ -3,10 +3,9 @@ import clientServices from "../services/streaming/clientService";
 export const ADD_CLIENT = "client/ADD_CLIENT";
 export const SET_CLIENTS = "client/SET_CLIENTS";
 
-
-export const add_client = () => async (dispatch) => {
+export const add_client = (client) => async (dispatch) => {
   try {
-    await clientServices.getClients().then(function (response) {
+    await clientServices.addClient(client).then(function (response) {
       dispatch({
         type: ADD_CLIENT,
         payload: response.data,

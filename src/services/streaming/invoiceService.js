@@ -1,9 +1,15 @@
 import axios from "../config";
 
 const invoiceServices = () => {
-
-  return {
+  const generateInvoice = (invoice) => {
+    return axios({
+      method: "POST",
+      url: "/factura",
+      data: invoice,
+    });
   };
+
+  return { generateInvoice };
 };
 
 export default invoiceServices();
