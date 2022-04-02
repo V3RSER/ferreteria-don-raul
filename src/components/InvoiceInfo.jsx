@@ -13,7 +13,7 @@ const InvoiceInfo = (props) => {
 
   return (
     <>
-      {props.state.invoice.length && (
+      {props.state.invoice.length >= 1 && (
         <InvoiceCard
           cliente={props.state.invoice[0].cliente}
           fecha={props.state.invoice[0].fecha}

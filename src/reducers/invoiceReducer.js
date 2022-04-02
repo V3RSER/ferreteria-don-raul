@@ -1,11 +1,12 @@
 import {
+  CLEAR_INVOICE,
   GENERATE_INVOICE,
   SET_INVOICE,
   SET_INVOICES,
 } from "../actions/invoiceAction";
 
 const INITIAL_STATE = {
-  invoice: {},
+  invoice: [],
   invoices: [],
 };
 
@@ -14,7 +15,7 @@ const invoice = (state = INITIAL_STATE, action) => {
     case GENERATE_INVOICE: {
       return {
         ...state,
-        invoice: action.payload,
+        invoice: [action.payload],
       };
     }
     case SET_INVOICES: {
@@ -23,10 +24,16 @@ const invoice = (state = INITIAL_STATE, action) => {
         invoices: action.payload,
       };
     }
+    case CLEAR_INVOICE: {
+      return {
+        ...state,
+        invoice: [],
+      };
+    }
     case SET_INVOICE: {
       return {
         ...state,
-        invoice: action.payload,
+        invoice: [action.payload],
       };
     }
     default:

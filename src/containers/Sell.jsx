@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { connect } from "react-redux";
 import { set_products } from "../actions/inventoryAction";
+import { clear_invoice } from "../actions/invoiceAction";
 import ProductList from "./ProductList";
 import NavBarSell from "../components/NavBarSell";
 import { Spinner } from "reactstrap";
@@ -9,13 +10,14 @@ const Sell = (props) => {
   const [search, setSearch] = useState("");
 
   useEffect(() => {
+    props.clear_invoice();
     if (!props.state.products?.length) props.set_products();
   }, []);
 
   return (
     <>
-      <NavBarSell  setSearch={setSearch} />
-      
+      <NavBarSell setSearch={setSearch} />
+
       {props.state.loading && <Spinner>Loading...</Spinner>}
       <ProductList
         products={
@@ -44,6 +46,7 @@ const stateMapToProps = (state) => {
 
 const mapDispatchToProps = {
   set_products,
+  clear_invoice,
 };
 
 export default connect(stateMapToProps, mapDispatchToProps)(Sell);

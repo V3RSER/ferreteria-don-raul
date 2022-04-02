@@ -36,29 +36,42 @@ const NavBarSell = (props) => {
             }}
           />
         </Nav>
-        <Button
-          color="success"
-          onClick={() => {
-            if (props.data.shopingCart.length) {
-              props.generate_invoice({
-                carrito: props.data.shopingCart.flatMap(function (cart) {
-                  cart.cantidad = cart.quantity;
-                  return cart;
-                }),
-                vendedor: "vendedor",
-                cliente: props.data.buyer.nombre,
-              });
-              navigate("/ferreteria-don-raul/factura/" + props.data.invoice.id);
-
-              props.data.shopingCart.map((cart) =>
-                props.reduce_stock(cart.product.id, cart.quantity)
+        {!props.state.loading && props.state.invoice.length >= 1 && (
+          <Button
+            color="primary"
+            className="px-3"
+            onClick={() => {
+              navigate(
+                "/ferreteria-don-raul/factura/" + props.state.invoice[0].id
               );
-              props.clear_products();
-            }
-          }}
-        >
-          Generar factura
-        </Button>
+            }}
+          >
+            Ver factura
+          </Button>
+        )}
+        {props.state.invoice.length === 0 && (
+          <Button
+            color="success"
+            onClick={() => {
+              if (props.state.shopingCart.length) {
+                props.generate_invoice({
+                  carrito: props.state.shopingCart.flatMap(function (cart) {
+                    cart.cantidad = cart.quantity;
+                    return cart;
+                  }),
+                  vendedor: "Vendedor",
+                  cliente: props.state.buyer.nombre,
+                });
+                props.state.shopingCart.map((cart) =>
+                  props.reduce_stock(cart.product.id, cart.quantity)
+                );
+                props.clear_products();
+              }
+            }}
+          >
+            Generar factura
+          </Button>
+        )}
       </Collapse>
     </Navbar>
   );
@@ -66,10 +79,11 @@ const NavBarSell = (props) => {
 
 const stateMapToProps = (state) => {
   return {
-    data: {
+    state: {
       shopingCart: state.sell.shopingCart,
       buyer: state.sell.buyer,
       invoice: state.invoice.invoice,
+      loading: state.view.loading,
     },
   };
 };
