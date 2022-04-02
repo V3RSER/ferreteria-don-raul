@@ -5,6 +5,7 @@ import Sell from "./containers/Sell";
 import Header from "./components/Header";
 import ShoppingCart from "./containers/ShopingCart";
 import Buyer from "./containers/Buyer";
+import History from "./containers/History";
 
 function App() {
   return (
@@ -12,12 +13,13 @@ function App() {
       <BrowserRouter>
         <Header></Header>
         <Routes>
-          <Route path="/ferreteria-don-raul/vender" element={<Sell />} />
+          <Route path="/ferreteria-don-raul" element={<Sell />} />
           <Route
             path="/ferreteria-don-raul/carrito"
             element={<ShoppingCart />}
           />
           <Route path="/ferreteria-don-raul/comprador" element={<Buyer />} />
+          <Route path="/ferreteria-don-raul/historial" element={<History />} />
         </Routes>
       </BrowserRouter>
     </Provider>

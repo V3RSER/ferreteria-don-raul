@@ -4,6 +4,7 @@ import { Navbar, Button, Input, Collapse, Nav } from "reactstrap";
 import { connect } from "react-redux";
 import { generate_invoice } from "../actions/invoiceAction";
 import { clear_products } from "../actions/sellAction";
+import { reduce_stock } from "../actions/inventoryAction";
 
 const NavBarSell = (props) => {
   const [search, setSearch] = useState("");
@@ -13,7 +14,7 @@ const NavBarSell = (props) => {
     <Navbar color="dark" dark expand light>
       <Collapse navbar>
         <Nav className="me-auto" navbar>
-          <NavLink className="navbar-brand" to="/ferreteria-don-raul/vender">
+          <NavLink className="navbar-brand" to="/ferreteria-don-raul">
             Productos
           </NavLink>
           <NavLink className="navbar-brand" to="/ferreteria-don-raul/carrito">
@@ -47,8 +48,12 @@ const NavBarSell = (props) => {
                 vendedor: "vendedor",
                 cliente: props.data.buyer.nombre,
               });
-              props.clear_products();
               navigate("/ferreteria-don-raul/factura/" + props.data.invoice.id);
+
+              props.data.shopingCart.map((cart) =>
+                props.reduce_stock(cart.product.id, cart.quantity)
+              );
+              props.clear_products();
             }
           }}
         >
@@ -72,6 +77,7 @@ const stateMapToProps = (state) => {
 const mapDispatchToProps = {
   generate_invoice,
   clear_products,
+  reduce_stock,
 };
 
 export default connect(stateMapToProps, mapDispatchToProps)(NavBarSell);

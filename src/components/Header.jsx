@@ -1,13 +1,18 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
-import { Navbar } from "reactstrap";
+import { Nav, Navbar } from "reactstrap";
 
 const Header = () => {
   return (
-    <Navbar color="light" expand="md" light>
-      <NavLink className="navbar-brand" to="/ferreteria-don-raul/vender">
-        Vender
-      </NavLink>
+    <Navbar color="warning" expand light>
+      <Nav className="me-auto" navbar>
+        <NavLink className="navbar-brand" to="/ferreteria-don-raul">
+          Vender
+        </NavLink>
+        <NavLink className="navbar-brand" to="/ferreteria-don-raul/historial">
+          Historial
+        </NavLink>
+      </Nav>
     </Navbar>
   );
 };
