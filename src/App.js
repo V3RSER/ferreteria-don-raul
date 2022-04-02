@@ -2,18 +2,23 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { Provider } from "react-redux";
 import store from "./store/store";
 import Sell from "./containers/Sell";
-import Invoice from "./containers/Invoice";
+import Header from "./components/Header";
+import ShoppingCart from "./containers/ShopingCart";
+import Buyer from "./containers/Buyer";
 
 function App() {
   return (
     <Provider store={store}>
       <BrowserRouter>
-        <div className="container">
-          <Routes>
-            <Route path="/ferreteria-don-raul/vender" element={<Sell />} />
-            <Route path="/ferreteria-don-raul/factura" element={<Invoice />} />
-          </Routes>
-        </div>
+        <Header></Header>
+        <Routes>
+          <Route path="/ferreteria-don-raul/vender" element={<Sell />} />
+          <Route
+            path="/ferreteria-don-raul/carrito"
+            element={<ShoppingCart />}
+          />
+          <Route path="/ferreteria-don-raul/comprador" element={<Buyer />} />
+        </Routes>
       </BrowserRouter>
     </Provider>
   );

@@ -2,13 +2,9 @@ import React, { useEffect, useState } from "react";
 import { connect } from "react-redux";
 import { set_products } from "../actions/inventoryAction";
 import ProductList from "./ProductList";
-import { Navbar, Input, Button } from "reactstrap";
-import { NavLink, useNavigate } from "react-router-dom";
-
+import NavBarSell from "../components/NavBarSell";
 const Sell = (props) => {
   const [search, setSearch] = useState("");
-  let navigate = useNavigate();
-
   useEffect(() => {
     //TODO implementar lógica de carga
     if (!props.state.products?.length) props.set_products();
@@ -16,28 +12,7 @@ const Sell = (props) => {
 
   return (
     <>
-      <Navbar color="dark" dark expand="sm" fixed="" light>
-        <NavLink className="navbar-brand" to="/ferreteria-don-raul/vender">
-          Productos
-        </NavLink>
-        <Input
-          className="mx-3"
-          type="text"
-          placeholder="Búsqueda por nombre"
-          value={search}
-          onChange={(event) => {
-            setSearch(event.target.value);
-          }}
-        />
-        <Button
-          color="primary"
-          onClick={() => {
-            navigate("/ferreteria-don-raul/factura");
-          }}
-        >
-          Factura
-        </Button>
-      </Navbar>
+      <NavBarSell setSearch={setSearch} />
       <ProductList
         products={
           search.length

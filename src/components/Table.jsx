@@ -9,7 +9,7 @@ const Table = ({ columns, data }) => {
     });
 
   return (
-    <LayoutTable bordered responsive striped {...getTableProps()}>
+    <LayoutTable bordered borderless hover responsive {...getTableProps()}>
       <thead>
         {headerGroups.map((headerGroup) => (
           <tr {...headerGroup.getHeaderGroupProps()}>
