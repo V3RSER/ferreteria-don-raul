@@ -1,14 +1,14 @@
 {
   "files": {
-    "main.css": "/ferreteria-don-raul/static/css/main.1d55c7b5.css",
-    "main.js": "/ferreteria-don-raul/static/js/main.941d519b.js",
+    "main.css": "/ferreteria-don-raul/static/css/main.208ea68b.css",
+    "main.js": "/ferreteria-don-raul/static/js/main.2c41031a.js",
     "index.html": "/ferreteria-don-raul/index.html",
     "static/media/icon_warning.svg": "/ferreteria-don-raul/static/media/icon_warning.c005eb04c3d02b4df5e5.svg",
-    "main.1d55c7b5.css.map": "/ferreteria-don-raul/static/css/main.1d55c7b5.css.map",
-    "main.941d519b.js.map": "/ferreteria-don-raul/static/js/main.941d519b.js.map"
+    "main.208ea68b.css.map": "/ferreteria-don-raul/static/css/main.208ea68b.css.map",
+    "main.2c41031a.js.map": "/ferreteria-don-raul/static/js/main.2c41031a.js.map"
   },
   "entrypoints": [
-    "static/css/main.1d55c7b5.css",
-    "static/js/main.941d519b.js"
+    "static/css/main.208ea68b.css",
+    "static/js/main.2c41031a.js"
   ]
 }
