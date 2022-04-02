@@ -4,7 +4,7 @@ import { set_products } from "../actions/inventoryAction";
 import NavBarSearch from "../components/NavBarSearch";
 import Table from "../components/Table";
 
-const Iventory = (props) => {
+const Inventory = (props) => {
   const [search, setSearch] = useState("");
 
   useEffect(() => {
@@ -85,4 +85,4 @@ const mapDispatchToProps = {
   set_products,
 };
 
-export default connect(stateMapToProps, mapDispatchToProps)(Iventory);
+export default connect(stateMapToProps, mapDispatchToProps)(Inventory);
