@@ -8,9 +8,8 @@ const Iventory = (props) => {
   const [search, setSearch] = useState("");
 
   useEffect(() => {
-    //TODO implementar lógica de carga
     if (!props.state.products?.length) props.set_products();
-  }, [props]);
+  }, []);
 
   return (
     <>

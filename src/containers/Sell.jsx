@@ -3,16 +3,20 @@ import { connect } from "react-redux";
 import { set_products } from "../actions/inventoryAction";
 import ProductList from "./ProductList";
 import NavBarSell from "../components/NavBarSell";
+import { Spinner } from "reactstrap";
+
 const Sell = (props) => {
   const [search, setSearch] = useState("");
+
   useEffect(() => {
-    //TODO implementar lógica de carga
     if (!props.state.products?.length) props.set_products();
-  }, [props]);
+  }, []);
 
   return (
     <>
-      <NavBarSell setSearch={setSearch} />
+      <NavBarSell  setSearch={setSearch} />
+      
+      {props.state.loading && <Spinner>Loading...</Spinner>}
       <ProductList
         products={
           search.length
@@ -33,6 +37,7 @@ const stateMapToProps = (state) => {
     state: {
       products: state.inventory.products,
       shopingCart: state.sell.shopingCart,
+      loading: state.view.loading,
     },
   };
 };

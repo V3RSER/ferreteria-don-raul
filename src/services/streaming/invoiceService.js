@@ -16,7 +16,14 @@ const invoiceServices = () => {
     });
   };
 
-  return { generateInvoice, getInvoices};
+  const getInvoice = (id) => {
+    return axios({
+      method: "GET",
+      url: "/factura/" + id,
+    });
+  };
+
+  return { generateInvoice, getInvoices, getInvoice };
 };
 
 export default invoiceServices();

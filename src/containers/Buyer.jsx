@@ -7,13 +7,12 @@ import NavBarSell from "../components/NavBarSell";
 import { Input } from "reactstrap";
 import UserCreate from "../components/UserCreate";
 
-const ShopingCart = (props) => {
+const Buyer = (props) => {
   const [search, setSearch] = useState("");
 
   useEffect(() => {
-    //TODO implementar lógica de carga
     if (!props.data.clients?.length) props.set_clients();
-  }, [props]);
+  }, []);
 
   return (
     <>
@@ -74,7 +73,7 @@ const ShopingCart = (props) => {
                       nombre: client.nombre,
                       documentoIdentidad: client.documentoIdentidad,
                       celular: client.celular,
-                    };  
+                    };
                   })
             }
           />
@@ -101,4 +100,4 @@ const mapDispatchToProps = {
   set_buyer,
 };
 
-export default connect(stateMapToProps, mapDispatchToProps)(ShopingCart);
+export default connect(stateMapToProps, mapDispatchToProps)(Buyer);

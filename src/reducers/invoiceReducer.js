@@ -1,4 +1,8 @@
-import { GENERATE_INVOICE, SET_INVOICES } from "../actions/invoiceAction";
+import {
+  GENERATE_INVOICE,
+  SET_INVOICE,
+  SET_INVOICES,
+} from "../actions/invoiceAction";
 
 const INITIAL_STATE = {
   invoice: {},
@@ -17,6 +21,12 @@ const invoice = (state = INITIAL_STATE, action) => {
       return {
         ...state,
         invoices: action.payload,
+      };
+    }
+    case SET_INVOICE: {
+      return {
+        ...state,
+        invoice: action.payload,
       };
     }
     default:

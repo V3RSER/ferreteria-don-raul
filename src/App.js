@@ -7,6 +7,7 @@ import ShoppingCart from "./containers/ShopingCart";
 import Buyer from "./containers/Buyer";
 import History from "./containers/History";
 import Inventory from "./containers/Inventory";
+import InvoiceInfo from "./components/InvoiceInfo";
 
 function App() {
   return (
@@ -21,7 +22,14 @@ function App() {
           />
           <Route path="/ferreteria-don-raul/comprador" element={<Buyer />} />
           <Route path="/ferreteria-don-raul/historial" element={<History />} />
-          <Route path="/ferreteria-don-raul/inventario" element={<Inventory />} />
+          <Route
+            path="/ferreteria-don-raul/inventario"
+            element={<Inventory />}
+          />
+          <Route
+            path="/ferreteria-don-raul/factura/:id"
+            element={<InvoiceInfo />}
+          />
         </Routes>
       </BrowserRouter>
     </Provider>

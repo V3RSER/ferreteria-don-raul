@@ -9,9 +9,8 @@ const ShopingCart = (props) => {
   const [search, setSearch] = useState("");
 
   useEffect(() => {
-    //TODO implementar lógica de carga
     if (!props.data.clients?.length) props.set_clients();
-  }, [props]);
+  }, []);
 
   return (
     <>
